@@ -951,94 +951,13 @@
         </div>
     </section>
 
-    <section id="join" class="register-section">
+    <section id="join" class="register-section" style="text-align: center;">
         <div class="register-container">
             <h2>📝 سجّل عضويتك الآن</h2>
             <p class="reg-subtitle">انضم إلى عائلة براعم التكنولوجيا واستفد من كل برامجنا التدريبية والأنشطة التقنية</p>
-            
-            <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">الاسم</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="مثال: أحمد" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">اللقب</label>
-                        <input type="text" id="lastName" name="lastName" placeholder="مثال: بن علي" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="parentPhone">رقم هاتف الولي / الأب</label>
-                    <input type="tel" id="parentPhone" name="parentPhone" placeholder="مثال: 0540209589" required>
-                </div>
-                <button type="submit" class="btn-register" id="submitBtn">تسجيل العضوية 🚀</button>
-                <div class="form-msg" id="formMsg"></div>
-            </form>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfkNU_H21Qb-7We1QEZFF_b-94v3O7XjQH0te1vP4wF17gCbA/viewform?usp=dialog" target="_blank" class="btn-primary" style="font-size: 1.25rem; padding: 16px 50px; display: inline-block; box-shadow: 0 8px 25px rgba(255,127,80,0.4); text-decoration: none; border-radius: 30px;">سجل الآن 🚀</a>
         </div>
     </section>
-
-    <script>
-    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxhJIvVV5ibYD1BLjQLy6FfG3Eu5VxPsc3TWUPGIO0H-oVq4U_f83y4NLCtWSznVkkwYQ/exec';
-    
-    async function submitForm(e) {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        const msg = document.getElementById('formMsg');
-        const firstName = document.getElementById('firstName').value.trim();
-        const lastName = document.getElementById('lastName').value.trim();
-        const parentPhone = document.getElementById('parentPhone').value.trim();
-        
-        if (!firstName || !lastName || !parentPhone) {
-            msg.className = 'form-msg error';
-            msg.textContent = '❌ يرجى ملء جميع الحقول';
-            return;
-        }
-        
-        btn.disabled = true;
-        btn.innerHTML = 'جارٍ التسجيل... <span class="spinner"></span>';
-        msg.className = 'form-msg';
-        msg.style.display = 'none';
-        
-        try {
-            const formData = new FormData();
-            formData.append('firstName', firstName);
-            formData.append('lastName', lastName);
-            formData.append('parentPhone', parentPhone);
-            
-            await fetch(SHEET_URL, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            });
-            
-            msg.className = 'form-msg success';
-            msg.style.display = 'block';
-            msg.textContent = '⏳ تم حفظ البيانات! جارٍ توجيهك إلى واتساب لإرسال رسالة التأكيد...';
-            
-            // Format WhatsApp message
-            const messageText = `السلام عليكم، أود تسجيل ابني في جمعية براعم التكنولوجيا.\n\n📝 تفاصيل التسجيل:\n• الاسم: ${firstName}\n• اللقب: ${lastName}\n• رقم هاتف الولي: ${parentPhone}`;
-            const whatsappUrl = `https://wa.me/213540209589?text=${encodeURIComponent(messageText)}`;
-            
-            // Redirect after 2 seconds
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-                document.getElementById('regForm').reset();
-                msg.textContent = '✅ تم التسجيل بنجاح وإرسال التفاصيل لواتساب الجمعية!';
-                btn.disabled = false;
-                btn.innerHTML = 'تسجيل العضوية 🚀';
-            }, 2000);
-            
-            return; // prevent disabling button early since it's done inside setTimeout
-        } catch (err) {
-            msg.className = 'form-msg error';
-            msg.style.display = 'block';
-            msg.textContent = '❌ حدث خطأ، يرجى المحاولة مرة أخرى';
-        }
-        
-        btn.disabled = false;
-        btn.innerHTML = 'تسجيل العضوية 🚀';
-    }
-    </script>
 
     <footer id="contact">
         <div class="footer-content">
