@@ -528,6 +528,172 @@
                 display: none; /* In a real app, we'd add a hamburger menu */
             }
         }
+
+        /* Registration Form */
+        .register-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #0a1628 0%, #0d2447 50%, #1a3a6a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,140,50,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .register-container {
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .register-section h2 {
+            color: white;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .register-section .reg-subtitle {
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+        }
+
+        .reg-form {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 24px;
+            padding: 40px 36px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 0 3px rgba(255,140,50,0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent-orange), #e67e22);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,140,50,0.4);
+        }
+
+        .btn-register:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-msg {
+            text-align: center;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-msg.success {
+            display: block;
+            background: rgba(46,204,113,0.15);
+            color: #2ecc71;
+            border: 1px solid rgba(46,204,113,0.3);
+        }
+
+        .form-msg.error {
+            display: block;
+            background: rgba(231,76,60,0.15);
+            color: #e74c3c;
+            border: 1px solid rgba(231,76,60,0.3);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .reg-form {
+                padding: 28px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -647,11 +813,78 @@
         </div>
     </section>
 
-    <section class="cta">
-        <h2>هل أنت مستعد لبدء رحلتك في عالم التكنولوجيا؟</h2>
-        <p>انضم إلى مئات الأعضاء واستفد من ورش العمل، المحاضرات، والفعاليات التقنية التي ننظمها باستمرار.</p>
-        <a href="#join" class="btn-primary">سجل عضويتك الآن</a>
+    <section id="join" class="register-section">
+        <div class="register-container">
+            <h2>📝 سجّل عضويتك الآن</h2>
+            <p class="reg-subtitle">انضم إلى عائلة براعم التكنولوجيا واستفد من كل برامجنا التدريبية والأنشطة التقنية</p>
+            
+            <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">الاسم</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="مثال: أحمد" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">اللقب</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="مثال: بن علي" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="parentPhone">رقم هاتف الولي / الأب</label>
+                    <input type="tel" id="parentPhone" name="parentPhone" placeholder="مثال: 0540209589" required>
+                </div>
+                <button type="submit" class="btn-register" id="submitBtn">تسجيل العضوية 🚀</button>
+                <div class="form-msg" id="formMsg"></div>
+            </form>
+        </div>
     </section>
+
+    <script>
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxhJIvVV5ibYD1BLjQLy6FfG3Eu5VxPsc3TWUPGIO0H-oVq4U_f83y4NLCtWSznVkkwYQ/exec';
+    
+    async function submitForm(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('formMsg');
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const parentPhone = document.getElementById('parentPhone').value.trim();
+        
+        if (!firstName || !lastName || !parentPhone) {
+            msg.className = 'form-msg error';
+            msg.textContent = '❌ يرجى ملء جميع الحقول';
+            return;
+        }
+        
+        btn.disabled = true;
+        btn.innerHTML = 'جارٍ التسجيل... <span class="spinner"></span>';
+        msg.className = 'form-msg';
+        msg.style.display = 'none';
+        
+        try {
+            const formData = new FormData();
+            formData.append('firstName', firstName);
+            formData.append('lastName', lastName);
+            formData.append('parentPhone', parentPhone);
+            
+            await fetch(SHEET_URL, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            });
+            
+            msg.className = 'form-msg success';
+            msg.textContent = '✅ تم التسجيل بنجاح! مرحباً بك في عائلة براعم التكنولوجيا';
+            document.getElementById('regForm').reset();
+        } catch (err) {
+            msg.className = 'form-msg error';
+            msg.textContent = '❌ حدث خطأ، يرجى المحاولة مرة أخرى';
+        }
+        
+        btn.disabled = false;
+        btn.innerHTML = 'تسجيل العضوية 🚀';
+    }
+    </script>
 
     <footer id="contact">
         <div class="footer-content">
