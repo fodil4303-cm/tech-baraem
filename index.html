@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جمعية براعم التكنولوجيا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0056b3;
+            --secondary-blue: #007bff;
+            --accent-orange: #ff7f50;
+            --light-orange: #ffa07a;
+            --dark-bg: #f8f9fa;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .logo-img img {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-img i {
+            color: var(--accent-orange);
+            -webkit-text-fill-color: initial; /* Reset for icon */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background-color: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-orange), var(--light-orange));
+            color: var(--text-light);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 127, 80, 0.4);
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 5% 50px;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(255, 127, 80, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: var(--primary-blue);
+            filter: blur(150px);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: var(--accent-orange);
+            filter: blur(150px);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-left: 50px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--accent-orange);
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--text-light);
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: right;
+            z-index: 2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-img-wrap {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover .feature-img {
+            transform: scale(1.05);
+        }
+
+        .feature-body {
+            padding: 25px 20px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .feature-text {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--primary-blue);
+            color: white;
+            padding: 60px 5%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Call to Action */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            padding: 80px 5%;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 127, 80, 0.2);
+            border-radius: 50%;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            padding: 15px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta .btn-primary:hover {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 5% 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .footer-text {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+            padding-right: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .hero-content {
+                padding-left: 0;
+                margin-bottom: 50px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-text {
+                margin: 0 auto 30px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                display: none; /* In a real app, we'd add a hamburger menu */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-img">
+                <img src="https://instagram.forn3-2.fna.fbcdn.net/v/t51.82787-19/528332202_17844582150544651_5828186605584408825_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.forn3-2.fna.fbcdn.net&_nc_cat=107&_nc_oc=Q6cZ2gEupb6Mpm3yRAQScBvNU1tPHA_n2ZtYPV1uTr5RdkP1SL-fiQoB5nyM2kUMn4VAXY4&_nc_ohc=8eE9Y7AqAa0Q7kNvwGu9-_v&_nc_gid=0LHvXGvKTKpLEgCvVHcnDw&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AQBAyYZ0HccmVBFA-Xyh2ld7jWr9XlyzzQ0LZ5Jiq9OpKA&oe=6A50026B&_nc_sid=7a9f4b" alt="شعار براعم التكنولوجيا">
+            </div>
+            <div class="logo-text">
+                براعم التكنولوجيا
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#about">من نحن</a></li>
+            <li><a href="#activities">أنشطتنا</a></li>
+            <li><a href="#contact">اتصل بنا</a></li>
+        </ul>
+        <a href="#join" class="btn-primary">انضم إلينا</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">نبني جيل <span>المستقبل</span> بالتكنولوجيا</h1>
+            <p class="hero-text">جمعية براعم التكنولوجيا مستغانم تهدف إلى تدريب الأطفال والشباب في كل ما هو متعلق بالتكنولوجيا ليكونوا قادة الغد في العالم الرقمي.</p>
+            <div class="hero-buttons">
+                <a href="#activities" class="btn-primary">اكتشف برامجنا</a>
+                <a href="#about" class="btn-secondary">تعرف علينا أكثر</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="hero-image.jpg" alt="انطلاق ورشات المخيم الصيفي التفاعلي">
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <h3>+500</h3>
+            <p>مستفيد</p>
+        </div>
+        <div class="stat-item">
+            <h3>50</h3>
+            <p>دورة تدريبية</p>
+        </div>
+        <div class="stat-item">
+            <h3>20</h3>
+            <p>مدرب معتمد</p>
+        </div>
+        <div class="stat-item">
+            <h3>10</h3>
+            <p>شراكات استراتيجية</p>
+        </div>
+    </section>
+
+    <section id="activities" class="features">
+        <h2 class="section-title">مجالات اهتمامنا</h2>
+        <p class="section-subtitle">نقدم مجموعة متنوعة من البرامج التدريبية والأنشطة التقنية</p>
+        
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <div class="feature-img-wrap">
+                    <img src="act1.jpg" alt="تكوينات عصرية">
+                    <span class="feature-badge">تدريب</span>
+                </div>
+                <div class="feature-body">
+                    <h3 class="feature-title">🤖 تكوينات عصرية للأطفال والشباب</h3>
+                    <p class="feature-text">نقدم برامج تدريبية حديثة ومتخصصة موجهة للأطفال والشباب في مجال التكنولوجيا، تجمع بين التعلم النظري والتطبيق العملي لبناء مهارات المستقبل.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-img-wrap">
+                    <img src="act2.jpg" alt="مسابقات ومخيمات">
+                    <span class="feature-badge">مسابقات</span>
+                </div>
+                <div class="feature-body">
+                    <h3 class="feature-title">🏆 المشاركة في المخيمات والمسابقات</h3>
+                    <p class="feature-text">نشارك بنشاط في المخيمات والمسابقات التقنية المحلية والدولية، مما يتيح للأعضاء فرصة إثبات مواهبهم والتنافس على أعلى المستويات.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-img-wrap">
+                    <img src="act3.jpg" alt="الإعلام الآلي والبرمجة">
+                    <span class="feature-badge">برمجة</span>
+                </div>
+                <div class="feature-body">
+                    <h3 class="feature-title">💻 الإعلام الآلي، الفنون الرقمية والبرمجة</h3>
+                    <p class="feature-text">نعلّم الأعضاء مبادئ علم الحاسوب والبرمجة، إلى جانب الفنون الرقمية والتصميم الإبداعي لتطوير الحلول الرقمية الابتكارية.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-img-wrap">
+                    <img src="act4.jpg" alt="الروبوتيك والذكاء الاصطناعي">
+                    <span class="feature-badge">روبوتيك</span>
+                </div>
+                <div class="feature-body">
+                    <h3 class="feature-title">🦾 الروبوتيك والذكاء الاصطناعي</h3>
+                    <p class="feature-text">نقدم ورشات عملية في بناء وبرمجة الروبوتات وتطبيقات الذكاء الاصطناعي، لتحضير جيل قادر على صنع تقنيات الغد.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-img-wrap">
+                    <img src="act5.jpg" alt="التصميم والطباعة ثلاثية الأبعاد">
+                    <span class="feature-badge">تصميم 3D</span>
+                </div>
+                <div class="feature-body">
+                    <h3 class="feature-title">🖨️ التصميم والطباعة ثلاثية الأبعاد</h3>
+                    <p class="feature-text">نفتح أمام الأعضاء عالم التصميم ثلاثي الأبعاد والطباعة الحجمية، مما يمكنهم من تحويل أفكارهم الإبداعية إلى نماذج حقيقية ملموسة.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>هل أنت مستعد لبدء رحلتك في عالم التكنولوجيا؟</h2>
+        <p>انضم إلى مئات الأعضاء واستفد من ورش العمل، المحاضرات، والفعاليات التقنية التي ننظمها باستمرار.</p>
+        <a href="#join" class="btn-primary">سجل عضويتك الآن</a>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <a href="#" class="footer-logo">براعم التكنولوجيا</a>
+                <p class="footer-text">جمعية رائدة تهدف إلى نشر ثقافة التكنولوجيا والابتكار بين الشباب والأطفال، وبناء مجتمع تقني واعي.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/people/%D8%A8%D8%B1%D8%A7%D8%B9%D9%85-%D8%A7%D9%84%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7-%D9%85%D8%B3%D8%AA%D8%BA%D8%A7%D9%86%D9%85/100085444651323/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@tech_baraem.dz" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/tech_baraem.dz/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/213540209589" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="footer-title">روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">عن الجمعية</a></li>
+                    <li><a href="#">الأنشطة والفعاليات</a></li>
+                    <li><a href="#">معرض الصور</a></li>
+                    <li><a href="#">انضم إلينا</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-title">تواصل معنا</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> مستغانم، الجزائر</li>
+                    <li><i class="fas fa-phone"></i> 0540209589</li>
+                    <li><i class="fas fa-envelope"></i> info@techbuds.org</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 جمعية براعم التكنولوجيا. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scrolled class to navbar on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.9)';
+                nav.style.boxShadow = '0 4px 6px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+</body>
+</html>
