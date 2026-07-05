@@ -1012,10 +1012,26 @@
             });
             
             msg.className = 'form-msg success';
-            msg.textContent = '✅ تم التسجيل بنجاح! مرحباً بك في عائلة براعم التكنولوجيا';
-            document.getElementById('regForm').reset();
+            msg.style.display = 'block';
+            msg.textContent = '⏳ تم حفظ البيانات! جارٍ توجيهك إلى واتساب لإرسال رسالة التأكيد...';
+            
+            // Format WhatsApp message
+            const messageText = `السلام عليكم، أود تسجيل ابني في جمعية براعم التكنولوجيا.\n\n📝 تفاصيل التسجيل:\n• الاسم: ${firstName}\n• اللقب: ${lastName}\n• رقم هاتف الولي: ${parentPhone}`;
+            const whatsappUrl = `https://wa.me/213540209589?text=${encodeURIComponent(messageText)}`;
+            
+            // Redirect after 2 seconds
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                document.getElementById('regForm').reset();
+                msg.textContent = '✅ تم التسجيل بنجاح وإرسال التفاصيل لواتساب الجمعية!';
+                btn.disabled = false;
+                btn.innerHTML = 'تسجيل العضوية 🚀';
+            }, 2000);
+            
+            return; // prevent disabling button early since it's done inside setTimeout
         } catch (err) {
             msg.className = 'form-msg error';
+            msg.style.display = 'block';
             msg.textContent = '❌ حدث خطأ، يرجى المحاولة مرة أخرى';
         }
         
