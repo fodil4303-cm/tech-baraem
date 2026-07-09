@@ -529,6 +529,150 @@
             transform: rotate(-45deg) translate(5px, -6px);
         }
 
+        /* Summer Camp Section */
+        .summer-camp-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e1efff 100%);
+            position: relative;
+        }
+
+        .summer-camp-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .camp-title {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .camp-subtitle {
+            color: var(--orange);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+        }
+
+        .camp-intro {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .camp-timing {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .timing-card {
+            background: #fff;
+            border: 2px solid #eef2f6;
+            border-radius: 15px;
+            padding: 20px 30px;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+        
+        .timing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+        }
+
+        .timing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .timing-card h4 {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .camp-activities {
+            background: var(--dark-bg);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .camp-activities h4 {
+            color: var(--orange);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .activities-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .activities-list li {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activities-list .icon {
+            font-size: 1.3rem;
+        }
+
+        .camp-footer {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .registration-note {
+            color: var(--orange);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+
+        /* Register Section */
+        .register-section {
+            padding: 80px 5% 110px;
+            background-color: var(--dark-bg);
+            position: relative;
+        }
+
+        .register-container {
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .register-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .register-section .reg-subtitle {
+            color: #666;
+            text-align: center;
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+        }
+
         /* ========= TABLET (max-width: 991px) ========= */
         @media (max-width: 991px) {
             .hamburger {
@@ -650,6 +794,12 @@
 
         /* ========= MOBILE (max-width: 600px) ========= */
         @media (max-width: 600px) {
+            .summer-camp-container {
+                padding: 25px 15px;
+            }
+            .camp-title { font-size: 1.8rem; }
+            .camp-subtitle { font-size: 1.2rem; }
+            .timing-card { min-width: 100%; }
             nav {
                 padding: 12px 4%;
             }
@@ -884,6 +1034,43 @@
         <div class="stat-item">
             <h3>10</h3>
             <p>شراكات استراتيجية</p>
+        </div>
+    </section>
+
+    <section id="summer-camp" class="summer-camp-section">
+        <div class="summer-camp-container">
+            <h2 class="camp-title">مواقيت المخيم الصيفي التكنولوجي</h2>
+            <h3 class="camp-subtitle">جمعية براعم التكنولوجيا للإبداع والابتكار</h3>
+            <p class="camp-intro">يسرّنا إعلام جميع الأولياء والمشاركين بانطلاق المخيم الصيفي وفق البرنامج التالي:</p>
+            
+            <div class="camp-timing">
+                <div class="timing-card">
+                    <div class="timing-icon">👧🧒</div>
+                    <h4>فئة الصغار</h4>
+                    <p>🕘 من 09:00 صباحًا إلى 12:00 ظهرًا.</p>
+                </div>
+                <div class="timing-card">
+                    <div class="timing-icon">🧑👩</div>
+                    <h4>فئة الكبار</h4>
+                    <p>🕘 من 09:00 صباحًا إلى 12:00 ظهرًا.</p>
+                </div>
+            </div>
+
+            <div class="camp-activities">
+                <h4>✨ يتضمن المخيم ورشات متنوعة وممتعة:</h4>
+                <ul class="activities-list">
+                    <li><span class="icon">🤖</span> الروبوتيك والبرمجة</li>
+                    <li><span class="icon">🎨</span> التصميم الرقمي</li>
+                    <li><span class="icon">🖨️</span> الطباعة ثلاثية الأبعاد</li>
+                    <li><span class="icon">📸</span> التصوير وصناعة المحتوى</li>
+                    <li><span class="icon">🎯</span> ورشات تفاعلية وأنشطة تعليمية ممتعة</li>
+                </ul>
+            </div>
+
+            <div class="camp-footer">
+                <p class="registration-note">📍 التسجيلات ما تزال متواصلة، والأماكن محدودة.</p>
+                <p class="welcome-note">🌟 أهلًا بجميع الأطفال والشباب لقضاء صيف مليء بالإبداع، والتعلم، والابتكار.</p>
+            </div>
         </div>
     </section>
 
